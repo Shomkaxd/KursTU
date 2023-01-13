@@ -1,0 +1,51 @@
+import matplotlib.pyplot as plt
+import numpy as np
+import methods as m
+
+
+def graph(n, a, b, dt,points):
+    fig, ax = plt.subplots()
+    ax.set(xlim = [-5, 5],
+           ylim = [0, 50],
+           title = 'Садртдинов Шамиль, Марат Санжар, 11 вариант',
+           xlabel = 'ось Х1',
+           ylabel = 'ось Х2')
+
+    for i in range(n):
+        ax.plot(points[0][i],points[1][i],'go')
+
+    # Тут мы строим график движения
+
+    for i in range(n):
+
+        xdots,ydots = [],[]  # Создали поле
+        xdots = m.rkx(points[0][i],dt,a,b,m.v1)
+        ydots = m.rky(points[1][i],dt,a,b,m.v2)
+
+        ax.plot(xdots[len(xdots)-1],ydots[len(ydots)-1],'ro')
+        ax.plot(xdots, ydots)
+    plt.show()
+
+def graph23():
+
+    time = [0.2,0.4,0.6,0.8,1,1.2,1.4,1.6,1.8,2]
+
+    for t in time:
+        fig = plt.figure()
+        ax = fig.add_subplot(1,2,1)
+        ax.set_title('t = '+str(t))
+        Y1, X1 = np.mgrid[-5:5:0.4,
+                        -5:5:0.4]
+        Y2, X2 = np.mgrid[-5:5:0.2,
+                        -5:5:0.2]
+        U1 = -np.sinh(t)*X1
+        V1 = np.sinh(t)*Y1
+        U2 = -np.sin(t)*X2
+        V2 = np.cos(t)*Y2
+
+        ax.quiver(X1, Y1, U1, V1)
+
+        bx = fig.add_subplot(1,2,2)
+        bx.streamplot(X2, Y2, U2, V2)
+
+        plt.show()
