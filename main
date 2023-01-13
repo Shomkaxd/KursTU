@@ -1,6 +1,6 @@
 import build
 import methods as m
-l, h = 2, 3
+import classes as c
 
 t,dt = 2, 0.5 # time, step
 
@@ -10,6 +10,9 @@ points = [
     [-2, -3, -4, -4, -4, -4, -3, -2, -2, -2],
     [1, 1, 1, 2, 3, 4, 4, 4, 3, 2, 1]
 ]
+dots = []
+for i in range(n):
+    dots.append(c.Point(i, points[0][i], points[1][i]))
 
-build.graph(n, m.a, m.b, dt, points)
-build.graph23()
+build.graph(n, m.a, m.b, dt, dots)
+build.graph2()
