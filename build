@@ -2,8 +2,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import methods as m
 
-
-def graph(n, a, b, dt,points):
+def graph(n, a, b, dt, points):
     fig, ax = plt.subplots()
     ax.set(xlim = [-5, 5],
            ylim = [0, 50],
@@ -12,23 +11,22 @@ def graph(n, a, b, dt,points):
            ylabel = 'ось Х2')
 
     for i in range(n):
-        ax.plot(points[0][i],points[1][i],'go')
+        ax.plot(points[i].x, points[i].y, 'go')
 
     # Тут мы строим график движения
-
     for i in range(n):
 
-        xdots,ydots = [],[]  # Создали поле
-        xdots = m.rkx(points[0][i],dt,a,b,m.v1)
-        ydots = m.rky(points[1][i],dt,a,b,m.v2)
+        xdots, ydots = [], []
+        xdots = m.rkx(points[i].x,dt,a,b,m.v1) #Вычисление точек по Р-К
+        ydots = m.rky(points[i].y,dt,a,b,m.v2)
 
         ax.plot(xdots[len(xdots)-1],ydots[len(ydots)-1],'ro')
         ax.plot(xdots, ydots)
-    plt.show()
 
-def graph23():
 
-    time = [0.2,0.4,0.6,0.8,1,1.2,1.4,1.6,1.8,2]
+def graph2():
+
+    time = [0.2,0.4,0.6,0.8,1]
 
     for t in time:
         fig = plt.figure()
