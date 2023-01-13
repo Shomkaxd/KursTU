@@ -1,4 +1,3 @@
-import matplotlib as mpl
 import numpy as np
 a = [
     [0, 0, 0],
@@ -11,13 +10,10 @@ b, c = [1/6, 4/6, 1/6], [0, 1/2, 1]
 def v1(x, t):
     return -np.sinh(t)*x
 
-
 def v2(y, t):
     return np.sinh(t)*y
 
-
-
-def rkx(x,dt,a,b,f):  
+def rkx(x,dt,a,b,f):
     dots = [x]
     t = 0
     for i in range(5):
