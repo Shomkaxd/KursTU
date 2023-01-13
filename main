@@ -1,0 +1,15 @@
+import build
+import methods as m
+l, h = 2, 3
+
+t,dt = 2, 0.5 # time, step
+
+n = 10
+
+points = [
+    [-2, -3, -4, -4, -4, -4, -3, -2, -2, -2],
+    [1, 1, 1, 2, 3, 4, 4, 4, 3, 2, 1]
+]
+
+build.graph(n, m.a, m.b, dt, points)
+build.graph23()
