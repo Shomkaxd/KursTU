@@ -1,0 +1,44 @@
+import matplotlib as mpl
+import numpy as np
+a = [
+    [0, 0, 0],
+    [0.5, 0, 0],
+    [-1, 2, 0]
+]
+
+b, c = [1/6, 4/6, 1/6], [0, 1/2, 1]
+
+def v1(x, t):
+    return -np.sinh(t)*x
+
+
+def v2(y, t):
+    return np.sinh(t)*y
+
+
+
+def rkx(x,dt,a,b,f):  
+    dots = [x]
+    t = 0
+    for i in range(5):
+        xi = dots[i]
+        k1 = f(xi, t)
+        k2 = f(xi + a[1][0] * dt * k1, t + dt/2)
+        k3 = f(xi + a[2][0] * dt * k1 + a[2][1] * dt *k2, t + dt)
+        xii = xi + dt * (b[0]*k1 + b[1]*k2 + b[2]*k3)
+        dots.append(xii)
+        t += dt
+    return dots
+
+def rky(y,dt,a,b,f):
+    dots = [y]
+    t = 0
+    for i in range(5):
+        yi = dots[i]
+        k1 = f(yi, t)
+        k2 = f(yi + a[1][0] * dt * k1, t + dt/2)
+        k3 = f(yi + a[2][0] * dt * k1 + a[2][1] * dt *k2, t + dt)
+        yii = yi + dt * (b[0]*k1 + b[1]*k2 + b[2]*k3)
+        dots.append(yii)
+        t += dt
+    return dots
